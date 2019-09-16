@@ -10,10 +10,7 @@ vector<ii> adj[MAX];
 bitset<MAX> processed;
 
 void dijkstra(priority_queue<ii, vector<ii>, greater<ii>> pq, int N)
-{
-    for (int i = 1; i <= N; ++i)
-        dist[i] = oo;
-    
+{   
     processed.reset();
 
     while (not pq.empty())
@@ -42,7 +39,7 @@ int solve(int N, int K, int cons = 100){
 
     for (size_t i = 1; i <= N; i++)
         if(test > dist[(cons*i) + K]){
-            test = dist[(cons*i)];
+            test = dist[(cons*i) + K];
             out = (cons*i) + K;
         }
 
@@ -67,8 +64,11 @@ int main(int argc, char const *argv[])
             
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
-        for (size_t i = 0; i < 500; i++)
-            adj[i].clear();        
+        for (size_t i = 0; i < 600; i++)
+            adj[i].clear();
+
+        for (int i = 1; i <= 600; ++i)
+            dist[i] = oo;        
 
         for (size_t i = 1; i <= N; i++){
             vector<int> floor;
@@ -90,7 +90,7 @@ int main(int argc, char const *argv[])
                     dist[hash] = 0;
                 }
                 
-                if(sameFloor[floor[j]]){
+                if(sameFloor[floor[j]] and floor[j] != 0){
                     for(const auto& x : link[floor[j]]){
                         adj[hash].push_back( { x, 60 } );
                         adj[x].push_back( { hash, 60 } );
@@ -98,7 +98,7 @@ int main(int argc, char const *argv[])
 
                     link[floor[j]].push_back( hash );
                 }
-                else {
+                else if (floor[j] != 0) {
                     sameFloor[floor[j]] = 1;
                     link[floor[j]].push_back( hash );
                 }
@@ -111,24 +111,12 @@ int main(int argc, char const *argv[])
                 }
             }
         }
-
-        for (size_t i = 100; i <= 499; i++)
-        {
-            if(not adj[i].empty()){
-                cout << i << endl;
-                for(const auto& [v, w] : adj[i]){
-                    cout << v <<  " x " << w << " | ";
-                }
-                cout << endl;
-            }
-
-        }
         
         dijkstra(sources, 500);
 
         auto out = solve(N, K);        
         
-        if (dist != 0)
+        if (out != 0)
             cout << dist[out] << endl;
         else
             cout << "IMPOSSIBLE" << endl;
