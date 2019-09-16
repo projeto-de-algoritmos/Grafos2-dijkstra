@@ -13,6 +13,19 @@
   <div id="root"></div>
 </body>
 
+<script src="./utils/PriorityQueue.js"></script>
+<script src="./utils/removeDeepFromMap.js"></script>
+<script src="./utils/toDeepMap.js"></script>
+<script src="./utils/Graph.js"></script>
 
+<script>
+  const graph = new Graph()
+  graph.addNode('A', { B: 1 })
+  graph.addNode('B', { A: 1, C: 2, D: 4 })
+  graph.addNode('C', { B: 2, D: 1 })
+  graph.addNode('D', { C: 1, B: 4 })
+  console.log(graph.path('A', 'D'))
+
+</script>
 
 </html>
