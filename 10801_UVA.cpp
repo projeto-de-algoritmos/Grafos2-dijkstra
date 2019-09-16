@@ -5,7 +5,7 @@ using ii = pair<int, int>;
 using edge = tuple<int, int, int>;
 
 const int MAX { 100010 }, oo { 1000000010 };
-int dist[MAX];
+int dist[MAX], prev[MAX];;
 vector<ii> adj[MAX];
 bitset<MAX> processed;
 
@@ -28,6 +28,7 @@ void dijkstra(priority_queue<ii, vector<ii>, greater<ii>> pq, int N)
             if (dist[v] > d + w) {
                 dist[v] = d + w;
                 pq.push(ii(dist[v], v));
+                prev[v] = u;
             }
         }
     }
@@ -64,11 +65,11 @@ int main(int argc, char const *argv[])
             
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
-        for (size_t i = 0; i < 600; i++)
+        for (size_t i = 0; i < 600; ++i){
             adj[i].clear();
-
-        for (int i = 1; i <= 600; ++i)
-            dist[i] = oo;        
+            dist[i] = oo;
+            prev[i] = -1;
+        }
 
         for (size_t i = 1; i <= N; i++){
             vector<int> floor;
@@ -88,6 +89,7 @@ int main(int argc, char const *argv[])
                 if(floor[j] == 0){
                     sources.push( { 0, hash } );
                     dist[hash] = 0;
+                    prev[hash] = 1;
                 }
                 
                 if(sameFloor[floor[j]] and floor[j] != 0){
@@ -116,8 +118,22 @@ int main(int argc, char const *argv[])
 
         auto out = solve(N, K);        
         
-        if (out != 0)
+        if (out != 0){
             cout << dist[out] << endl;
+
+            vector<int> backtracking;
+            int p = out;
+
+            while (p != 1) {
+                backtracking.push_back(p);
+                p = prev[p];
+            } 
+
+            reverse(backtracking.begin(), backtracking.end());
+
+            for (size_t i = 0; i < backtracking.size(); ++i)
+                cout << backtracking[i] << (i + 1 == backtracking.size() ? "\n" : " ");
+        }
         else
             cout << "IMPOSSIBLE" << endl;
     }
