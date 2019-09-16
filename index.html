@@ -10,7 +10,7 @@
 </head>
 
 <body>
-  <div id="root"></div>
+  <!-- <div id="root"></div> -->
 </body>
 
 <script src="./utils/PriorityQueue.js"></script>
@@ -19,12 +19,53 @@
 <script src="./utils/Graph.js"></script>
 
 <script>
-  const graph = new Graph()
-  graph.addNode('A', { B: 1 })
-  graph.addNode('B', { A: 1, C: 2, D: 4 })
-  graph.addNode('C', { B: 2, D: 1 })
-  graph.addNode('D', { C: 1, B: 4 })
-  console.log(graph.path('A', 'D'))
+  // graph.addNode('A', { B: 1 })
+  // graph.addNode('B', { A: 1, C: 2, D: 4 })
+  // graph.addNode('C', { B: 2, D: 1 })
+  // graph.addNode('D', { C: 1, B: 4 })
+
+  function calc_random_weight() { return Math.floor(Math.random() * 20000 + 1) }
+
+  const adj_list = {
+    'A': {
+      'B': calc_random_weight(),
+      'C': calc_random_weight(),
+    },
+    'B': {
+    },
+    'C': {
+      'D': calc_random_weight()
+    },
+    'D': {
+      'C': calc_random_weight()
+    }
+  }
+  console.log(adj_list)
+
+  const graph = new Graph(adj_list)
+
+  Object.keys(adj_list).map((node, i) => {
+    const n = document.createElement('div')
+    n.className = `node`
+    n.setAttribute('id', `node-${node}`)
+    document.body.appendChild(n)
+
+    Object.keys(adj_list[node]).map((edge, i) => {
+      const e = document.createElement('div')
+      console.log(`${node}-${edge}`)
+      e.className = `edge`
+      e.setAttribute('id', `edge-${node}-${edge}`)
+      document.body.appendChild(e)
+    })
+  })
+
+  const shortest_path = graph.path('A', 'D')
+
+  shortest_path.map(pos => {
+    let n = document.getElementById(`node-${pos}`)
+    n.classList.add('path')
+  })
+
 
 </script>
 
