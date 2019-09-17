@@ -22,8 +22,16 @@ body {
 
 
 .cell {
-  background-color: purple;
-  width: 4vw;
-  height: 6.5vh;
+
+  width: 3.8vw;
+  height: 7vh;
   border-radius: .5rem;
+}
+
+.activated {
+  background-color: blue;
+}
+
+.deactivated {
+  background-color: gray;
 }

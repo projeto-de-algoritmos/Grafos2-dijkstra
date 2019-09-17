@@ -26,11 +26,11 @@ function App() {
 
   for (let i = 0; i < 12; i++) {
     console.log(i)
-    if (board[i][0]) e1.push(i)
-    if (board[i][1]) e2.push(i)
-    if (board[i][2]) e3.push(i)
-    if (board[i][3]) e4.push(i)
-    if (board[i][4]) e5.push(i)
+    if (board[i][0]) e1.push(11 - i)
+    if (board[i][1]) e2.push(11 - i)
+    if (board[i][2]) e3.push(11 - i)
+    if (board[i][3]) e4.push(11 - i)
+    if (board[i][4]) e5.push(11 - i)
   }
 
   console.log(e1, e2, e3, e4, e5)
@@ -39,13 +39,15 @@ function App() {
     <table>
       <tbody>
         {board.map((arr, x) =>
-          <tr key={x}>
+          <tr key={x} data-in>
             {arr.map((val, y) =>
-              <td className="cell" key={`${x}-${y}`} onClick={() => console.log(x)}>oi</td>)}
+              <td className={`cell ${board[x][y] ? 'activated' : 'deactivated'}`} key={`${11 - x}-${y + 1}`}
+                data-index={`${11 - x}-${y + 1}`}
+                onClick={() => console.log(x)}></td>)}
           </tr>
         )}
       </tbody>
-    </table>
+    </table >
   );
 }
 
