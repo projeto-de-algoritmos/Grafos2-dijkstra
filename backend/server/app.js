@@ -1,8 +1,10 @@
 const fs = require('fs')
 const { exec } = require('child_process')
 const express = require('express')
+const cors = require('cors')
 const server = express()
 server.use(express.json())
+server.use(cors())
 
 const sanitizeArrToString = (str) => JSON.stringify(str).split(/[\[\],]/).join(' ').trim()
 
@@ -32,4 +34,4 @@ server.post('/graph', (req, res) => {
   })
 })
 
-server.listen(3333, () => console.log('server is running at port 3000'))
+server.listen(3333, () => console.log('server is running at port 3333'))

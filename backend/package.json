@@ -4,6 +4,7 @@
   "description": "Este jogo *desafiador* e super *empolgante* ver trazer um desafio ao seus jogadores: **apagar todas as luzes do tabuleiro**. Tendo como adversário um computador que sabe de \"cabeça\" a resolução, o usuário deve mostrar mais agilidade para poder vencer nesse jogo.",
   "main": "test.js",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1"
   },
   "devDependencies": {
