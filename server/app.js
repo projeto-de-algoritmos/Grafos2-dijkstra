@@ -1,14 +1,13 @@
 const fs = require('fs')
+const { exec } = require('child_process')
 const express = require('express')
 const server = express()
-
 server.use(express.json())
 
 const sanitizeArrToString = (str) => JSON.stringify(str).split(/[\[\],]/).join(' ').trim()
 
 server.post('/graph', (req, res) => {
   let { qtdElevator, selectedFloor, elevatorsTimes, elevatorsPaths } = req.body
-  // console.log(qtdElevator, selectedFloor, elevatorsTimes, elevatorsPaths)
 
   elevatorsTimes = sanitizeArrToString(elevatorsTimes)
 
@@ -21,12 +20,16 @@ server.post('/graph', (req, res) => {
   const questionInput = `${qtdElevator} ${selectedFloor}\n${elevatorsTimes}\n${strPaths}\n`
 
   fs.writeFile('./solver/input.txt', questionInput, err => {
-    if (err) throw new Error('Lascou!')
-
-    console.log('saved')
+    if (err) throw new Error('fuck... there was a problem when saving the file ;-;')
+    console.log('saved input file :D')
   })
 
-  res.send({ ok: true })
+  exec('./solver/./prog < ./solver/input.txt', (err, stdout, stderr) => {
+    if (err) throw new Error('fuck... there was a problem when running the binary ;-;')
+    console.log('the binary run with success :D')
+    const paths = stdout.split('\n')
+    res.send({ shortest_path: [paths[0], paths[1]] })
+  })
 })
 
-server.listen(3000, () => console.log('server running at port 3000'))
+server.listen(3000, () => console.log('server is running at port 3000'))
