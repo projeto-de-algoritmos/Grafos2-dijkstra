@@ -10,6 +10,7 @@
     "nodemon": "^1.19.2"
   },
   "scripts": {
+    "start": "node ./server/app.js",
     "dev": "nodemon ./server/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
