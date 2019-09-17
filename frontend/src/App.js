@@ -5,7 +5,7 @@ import { createBoard, createElevatorTimes } from './board'
 
 function App() {
 
-  const [board, setBoard] = useState(createBoard(12, 5, .8))
+  const [board, setBoard] = useState(createBoard(12, 5, .4))
   const [eTimes, setETimes] = useState(createElevatorTimes(5))
   const [totalTime, setTotalTime] = useState(0)
 
@@ -13,7 +13,7 @@ function App() {
     const obj = {
       "qtdElevator": 5,
       "selectedFloor": x,
-      "elevatorsTimes": [10, 5, 4, 3, 2],
+      "elevatorsTimes": [...eTimes],
       "elevatorsPaths": [e1.sort((a, b) => a - b), e2.sort((a, b) => a - b), e3.sort((a, b) => a - b), e4.sort((a, b) => a - b), e5.sort((a, b) => a - b)]
     }
     const res = await axios.post('http://localhost:3333/graph', obj)
