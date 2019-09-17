@@ -6,40 +6,47 @@ html {
 }
 
 body {
-  margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
 }
 
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+
+.times {
+  background-color: white;
+  padding: .8rem 4rem;
+  border-radius: .8rem;
+  box-shadow: 0 0 2rem rgba(0,0,0,.2);
+}
+
+table {
+  margin: 0 10rem;
+  border-spacing: 1.2rem .8rem;
+}
 
 .cell {
   width: 3.8vw;
   height: 7vh;
   border-radius: .5rem;
   transition: all .5s;
+  box-shadow: 0 0 3rem rgba(0,0,0,.3);
 }
 
-.activated {
-  background-color: blue;
-}
+tr { transition: all .2s; }
+td, tr:hover { transform: translateX(-.8rem);}
+.activated { background-color: rgb(255, 136, 0); }
+.deactivated { background-color: rgb(61, 61, 61); }
+.path { background-color: rgb(0, 81, 255); }
 
-.deactivated {
-  background-color: gray;
-}
-
-.path {
-  background-color: green;
-}
-
-.change {
-  background-color: red;
-}
