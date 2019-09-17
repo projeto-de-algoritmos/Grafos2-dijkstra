@@ -39,3 +39,7 @@ body {
 .path {
   background-color: green;
 }
+
+.change {
+  background-color: red;
+}

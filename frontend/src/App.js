@@ -3,25 +3,25 @@ import axios from 'axios'
 import './App.css';
 
 function App() {
-  const [board, setBoard] = useState([
-    [0, 0, -1, -1, -1,],
-    [-1, -1, 0, -1, 0,],
-    [-1, 0, 0, -1, 0,],
-    [-1, -1, -1, 0, 0,],
-    [0, -1, 0, -1, -1,],
-    [-1, -1, -1, 0, -1,],
-    [0, 0, 0, -1, 0,],
-    [0, 0, 0, 0, 0,],
-    [-1, -1, 0, -1, 0,],
-    [0, 0, -1, 0, 0,],
-    [0, 0, 0, -1, 0,],
-    [-1, -1, -1, 0, -1,],
-  ])
 
-  console.log(board)
+  const [board, setBoard] = useState([
+    [true, true, false, false, false,],
+    [false, false, true, false, true,],
+    [false, true, true, false, true,],
+    [false, false, false, true, true,],
+    [true, false, true, false, false,],
+    [false, false, false, true, false,],
+    [true, true, true, false, true,],
+    [true, true, true, true, true,],
+    [false, false, true, false, true,],
+    [true, true, false, true, true,],
+    [true, true, true, false, true,],
+    [false, false, false, true, false,],
+  ])
 
   async function findShortest(x) {
     console.log(x)
+
     const obj = {
       "qtdElevator": 5,
       "selectedFloor": x,
@@ -34,22 +34,33 @@ function App() {
     console.log(shortestPath)
 
     const newBoard = JSON.parse(JSON.stringify(board))
-    shortestPath.map(path => {
-      const elevator = path[0]
-      const floor = path[1] + path[2]
-      console.log(floor, elevator)
-      newBoard[11 - floor][elevator - 1] = 1
-    })
+
+    let idx = 1
+    myLoop(idx)
+
+    function myLoop(idx) {
+      setTimeout(() => {
+
+        document.getElementById((shortestPath[idx][1] === '0' ? shortestPath[idx][2] : (shortestPath[idx][1] + shortestPath[idx][2])) + '-' + shortestPath[idx][0]).classList.add('path')
+        document.getElementById((shortestPath[idx - 1][1] === '0' ? shortestPath[idx - 1][2] : (shortestPath[idx - 1][1] + shortestPath[idx - 1][2])) + '-' + shortestPath[idx - 1][0]).classList.remove('path')
+        idx++
+
+        if (idx < shortestPath.length)
+          myLoop(idx);
+
+      }, 1000)
+    }
+
     setBoard(newBoard)
   }
 
   let e1 = []; let e2 = []; let e3 = []; let e4 = []; let e5 = [];
   for (let i = 0; i < 12; i++) {
-    if (board[i][0] === 0) e1.push(11 - i)
-    if (board[i][1] === 0) e2.push(11 - i)
-    if (board[i][2] === 0) e3.push(11 - i)
-    if (board[i][3] === 0) e4.push(11 - i)
-    if (board[i][4] === 0) e5.push(11 - i)
+    if (board[i][0]) e1.push(11 - i)
+    if (board[i][1]) e2.push(11 - i)
+    if (board[i][2]) e3.push(11 - i)
+    if (board[i][3]) e4.push(11 - i)
+    if (board[i][4]) e5.push(11 - i)
   }
 
   // console.log(e1, e2, e3, e4, e5)
@@ -61,8 +72,8 @@ function App() {
           {board.map((arr, x) =>
             <tr key={x} data-in>
               {arr.map((val, y) =>
-                <td className={`cell ${board[x][y] === 0 ? 'activated' : (board[x][y] === -1 ? 'deactivated' : 'path')}`} key={`${11 - x}-${y + 1}`}
-                  data-index={`${11 - x}-${y + 1}`}
+                <td className={`cell ${board[x][y] ? 'activated' : 'deactivated'}`} key={`${11 - x}-${y + 1}`}
+                  id={`${11 - x}-${y + 1}`}
                   onClick={() => findShortest(11 - x)}></td>)}
             </tr>
           )}
