@@ -1,10 +1,15 @@
 const express = require('express')
-const app = express()
+const server = express()
 
-app.get('/oi', (req, res) => {
-  res.send('oioi')
+server.use(express.json())
+
+server.post('/graph', (req, res) => {
+  const { qtdElevator, selectedFloor, elevatorsTimes, elevatorsPaths } = req.body
+  console.log(qtdElevator, selectedFloor, elevatorsTimes, elevatorsPaths)
+
+
+
+  res.send({ ok: true })
 })
 
-app.listen(3000, () => {
-  console.log('server running at port 3000')
-})
+server.listen(3000, () => console.log('server running at port 3000'))
