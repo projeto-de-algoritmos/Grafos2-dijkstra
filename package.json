@@ -1,0 +1,27 @@
+{
+  "name": "Grafos2-dijkstra",
+  "version": "1.0.0",
+  "description": "Este jogo *desafiador* e super *empolgante* ver trazer um desafio ao seus jogadores: **apagar todas as luzes do tabuleiro**. Tendo como adversário um computador que sabe de \"cabeça\" a resolução, o usuário deve mostrar mais agilidade para poder vencer nesse jogo.",
+  "main": "test.js",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.2"
+  },
+  "scripts": {
+    "dev": "nodemon ./server/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/projeto-de-algoritmos/Grafos2-dijkstra.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/projeto-de-algoritmos/Grafos2-dijkstra/issues"
+  },
+  "homepage": "https://github.com/projeto-de-algoritmos/Grafos2-dijkstra#readme"
+}
