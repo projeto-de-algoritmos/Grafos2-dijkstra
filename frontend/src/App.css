@@ -22,10 +22,10 @@ body {
 
 
 .cell {
-
   width: 3.8vw;
   height: 7vh;
   border-radius: .5rem;
+  transition: all .5s;
 }
 
 .activated {
@@ -34,4 +34,8 @@ body {
 
 .deactivated {
   background-color: gray;
+}
+
+.path {
+  background-color: green;
 }
