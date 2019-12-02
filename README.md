@@ -1,49 +1,68 @@
-# Lift Hopping
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-Para melhor entender o funcionamento do algoritmo de *Dijkstra*, criamos a vizualização da solução *Accepted* da questão número **10801** do *UVA*.
+## Available Scripts
 
-Esta questão consiste em um prédio no qual os elevadores não param obrigariamente em todos os andares do prédio, sendo necessário, algumas vezes descer, ou não, para pegar o elevador para o andar desejado. Dessa forma, qual a rota mais rápida para um determinado andar, dado o tempo que um elevador demora para subir entre dois andares consecutivos e o tempo de espera para a troca de elevadores.
+In the project directory, you can run:
 
-Para se aprofundar mais no contexto da questão, aqui está o [link](https://onlinejudge.org/external/108/10801.pdf) do enunciado.
+### `npm start`
 
-![start](/frontend/src/assets/start.png)
-![path](/frontend/src/assets/path.png)
+Runs the app in the development mode.<br>
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-## Implementação
+The page will reload if you make edits.<br>
+You will also see any lint errors in the console.
 
-O grafo é montado usando o esquema de *hashes* de forma que cada os andares que os elevadores param, são representados por nós diferentes. Quando há dois elevadores que param em um mesmo andar existe uma ligação entre os mesmos com o peso de 60s. É importante frizar, que se trata de um grafo não-direcionado.
+### `npm test`
 
-Ao chamar *Dijkstra* é passado como argumento inicial todos os nós que partem do nível térreo (0) e para poder saber em qual elevador que chega ao andar com menor tempo, o mínimo entre todos os tempos de elevadores que param no mesmo andar.
+Launches the test runner in the interactive watch mode.<br>
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-Por fim, é feito o *backtracking*, uma vez que todas as vezes que uma distância era atualizada, foi guardado o nó anterior, viabilizando remontar o caminho percorrido pelo algoritmo.
+### `npm run build`
 
-## UVA Online Judge Veredict
+Builds the app for production to the `build` folder.<br>
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-![veredict](/frontend/src/assets/accepted.jpg)
+The build is minified and the filenames include the hashes.<br>
+Your app is ready to be deployed!
 
-# Como Usar
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-1. Clone o repositório
-2. Dentro de ```/backend``` execute ```npm install``` e em seguida ``` npm start``` e deixe o servidor rodando
-3. Em outro terminal entre no diretório ```/frontend``` e instale as dependência com ```npm install``` e logo em seguida execute ```npm start```
-4. Acesse localmente em localhost:3000 por padrão
+### `npm run eject`
 
-## Developers
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-<table border="0">
-    <tr>
-        <td> <img src="https://avatars3.githubusercontent.com/u/29265857?s=460&v=4"> </td>
-        <td> <img src="https://avatars3.githubusercontent.com/u/42387946?s=460&v=4"> </td>
-    </tr>
-    <tr>
-        <td align="center"> <a href="https://github.com/youssef-md"> Youssef Muhamad </a> <br> 17/0024334 </td>
-        <td align="center"> <a href="https://github.com/rogerioo"> Rogério Júnior </a> <br> 17/0021751 </td>
-    </tr>
-</table>
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
+Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-<hr/>
-<p align="center"><b>Lift Hopping</b></p>
-<p align="center">Projeto e Análise de Algoritmos - 2º/2019<br /><br />
-<a href="https://fga.unb.br" target="_blank"><img width="230"src="https://4.bp.blogspot.com/-0aa6fAFnSnA/VzICtBQgciI/AAAAAAAARn4/SxVsQPFNeE0fxkCPVgMWbhd5qIEAYCMbwCLcB/s1600/unb-gama.png"></a>
-</p>
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+
+### Analyzing the Bundle Size
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+
+### Making a Progressive Web App
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+
+### Advanced Configuration
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+
+### Deployment
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+
+### `npm run build` fails to minify
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify

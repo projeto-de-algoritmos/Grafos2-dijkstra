@@ -16,7 +16,7 @@ function App() {
       "elevatorsTimes": [...eTimes],
       "elevatorsPaths": [e1.sort((a, b) => a - b), e2.sort((a, b) => a - b), e3.sort((a, b) => a - b), e4.sort((a, b) => a - b), e5.sort((a, b) => a - b)]
     }
-    const res = await axios.post('http://localhost:3333/graph', obj)
+    const res = await axios.post('https://grafos2-dijkstra-backend.herokuapp.com/graph', obj)
     setTotalTime(res.data.shortest_path[0])
     const shortestPath = res.data.shortest_path[1].split(' ')
 
